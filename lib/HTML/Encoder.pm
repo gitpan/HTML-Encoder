@@ -25,7 +25,12 @@ HTML::Encoder - Encode special caracters to HTML code.
 
  use HTML::Encoder;
 
- HTML::Encoder->encode($ref);
+ my $HE = new HTML::Encoder(
+                            alphabet => 1, # Alphabet caracters encode (not complet).
+                            symbols  => 1, # Symbols caracters encode (not complet).
+                           );
+
+ $HE->encode($ref);
 
 =head1 DESCRIPTION
 
@@ -44,7 +49,7 @@ use warnings;
 
 BEGIN
 {
-   our $VERSION = '0.00_02';
+   our $VERSION = '0.00_03';
    our %alphabet = (
                     'á' => '&aacute;', 'â' => '&acirc;',  'ã' => '&atilde;', 'à' => '&agrave;', 'ä' => '&auml;',
                     'Á' => '&Aacute;', 'Â' => '&Acirc;',  'Ã' => '&Atilde;', 'À' => '&Agrave;', 'Ä' => '&Auml;',
