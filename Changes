@@ -1,5 +1,8 @@
 Revision history for Perl extension HTML::Encoder.
 
+0.00_04   Sat Jul 19 2003
+           - Defined and separated in groups all encodes defined in the W3C.
+
 0.00_03   Fri Jul 18 2003
            - Fixed SYNOPSIS.
 
