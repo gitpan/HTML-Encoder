@@ -1,0 +1,8 @@
+Changes
+COPYING
+Makefile.PL
+MANIFEST
+MD5SUM
+README
+lib/HTML/Encoder.pm
+t/test.t
