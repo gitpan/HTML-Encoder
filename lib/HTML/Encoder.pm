@@ -38,73 +38,41 @@ in data structure to HTML code.
 
 =cut
 
-use vars qw($VERSION %table $heads);
+use vars qw($VERSION %alphabet %symbols);
 use strict;
 use warnings;
 
 BEGIN
 {
-   our $VERSION = '0.00_01';
-   our %table = (
-                 chr(0xC3).chr(0xA1) => '&aacute;',
-                 chr(0xC3).chr(0xA2) => '&acirc;',
-                 chr(0xC3).chr(0xA3) => '&atilde;',
-                 chr(0xC3).chr(0xA0) => '&agrave;',
-                 chr(0xC3).chr(0xA4) => '&auml;',
-                 chr(0xC3).chr(0x81) => '&Aacute;',
-                 chr(0xC3).chr(0x82) => '&Acirc;',
-                 chr(0xC3).chr(0x83) => '&Atilde;',
-                 chr(0xC3).chr(0x80) => '&Agrave;',
-                 chr(0xC3).chr(0x84) => '&Auml;',
-                 chr(0xC3).chr(0xA9) => '&eacute;',
-                 chr(0xC3).chr(0xAA) => '&ecirc;',
-                 chr(0xC3).chr(0xA8) => '&egrave;',
-                 chr(0xC3).chr(0xAB) => '&euml;',
-                 chr(0xC3).chr(0x89) => '&Eacute;',
-                 chr(0xC3).chr(0x8A) => '&Ecirc;',
-                 chr(0xC3).chr(0x88) => '&Egrave;',
-                 chr(0xC3).chr(0x8B) => '&Euml;',
-                 chr(0xC3).chr(0xAD) => '&iacute;',
-                 chr(0xC3).chr(0xAE) => '&icirc;',
-                 chr(0xC3).chr(0xAC) => '&igrave;',
-                 chr(0xC3).chr(0xAF) => '&iuml;',
-                 chr(0xC3).chr(0x8D) => '&Iacute;',
-                 chr(0xC3).chr(0x8E) => '&Icirc;',
-                 chr(0xC3).chr(0x8C) => '&Igrave;',
-                 chr(0xC3).chr(0x8F) => '&iuml;',
-                 chr(0xC3).chr(0xB3) => '&oacute;',
-                 chr(0xC3).chr(0xB4) => '&ocirc;',
-                 chr(0xC3).chr(0xB5) => '&otilde;',
-                 chr(0xC3).chr(0xB2) => '&ograve;',
-                 chr(0xC3).chr(0xB6) => '&ouml;',
-                 chr(0xC3).chr(0x93) => '&Oacute;',
-                 chr(0xC3).chr(0x94) => '&ocirc;',
-                 chr(0xC3).chr(0x95) => '&Otilde;',
-                 chr(0xC3).chr(0x92) => '&Ograve;',
-                 chr(0xC3).chr(0x96) => '&Ouml;',
-                 chr(0xC3).chr(0xBA) => '&uacute;',
-                 chr(0xC3).chr(0xBB) => '&ucirc;',
-                 chr(0xC3).chr(0xB9) => '&ugrave;',
-                 chr(0xC3).chr(0xBC) => '&uuml;',
-                 chr(0xC3).chr(0x9A) => '&Uacute;',
-                 chr(0xC3).chr(0x9B) => '&Ucirc;',
-                 chr(0xC3).chr(0x99) => '&Ugrave;',
-                 chr(0xC3).chr(0x9C) => '&Uuml;',
-                 chr(0xC3).chr(0xA7) => '&ccedil;',
-                 chr(0xC3).chr(0x87) => '&Ccedil;',
-                           chr(0x3C) => '&lt;',
-                           chr(0x3E) => '&gt;',
-                           chr(0x26) => '&amp;',
-                );
-
-   our $heads = join '|',keys %table;
+   our $VERSION = '0.00_02';
+   our %alphabet = (
+                    'á' => '&aacute;', 'â' => '&acirc;',  'ã' => '&atilde;', 'à' => '&agrave;', 'ä' => '&auml;',
+                    'Á' => '&Aacute;', 'Â' => '&Acirc;',  'Ã' => '&Atilde;', 'À' => '&Agrave;', 'Ä' => '&Auml;',
+                    'é' => '&eacute;', 'ê' => '&ecirc;',                     'è' => '&egrave;', 'ë' => '&euml;',
+                    'É' => '&Eacute;', 'Ê' => '&Ecirc;',                     'È' => '&Egrave;', 'Ë' => '&Euml;',
+                    'í' => '&iacute;', 'î' => '&icirc;',                     'ì' => '&igrave;', 'ï' => '&iuml;',
+                    'Í' => '&Iacute;', 'Î' => '&Icirc;',                     'Ì' => '&Igrave;', 'Ï' => '&iuml;',
+                    'ó' => '&oacute;', 'ô' => '&ocirc;',  'õ' => '&otilde;', 'ò' => '&ograve;', 'ö' => '&ouml;',
+                    'Ó' => '&Oacute;', 'Ô' => '&Ocirc;',  'Ö' => '&Otilde;', 'Ò' => '&Ograve;', 'Ö' => '&Ouml;',
+                    'ú' => '&uacute;', 'û' => '&ucirc;',                     'ù' => '&ugrave;', 'ü' => '&uuml;',
+                    'Ú' => '&Uacute;', 'Û' => '&Ucirc;',                     'Ù' => '&Ugrave;', 'Ü' => '&Uuml;',
+                    'ç' => '&ccedil;', 'Ç' => '&Ccedil;', 
+                   );
+   our %symbols =  (
+                    '<' => '&lt;',     '>' => '&gt;',     '&' => '&amp;',
+                   );
 }
 
 =item B<new>
 
 The constructor method.
 
- NOT IMPLEMENTED!
+ my $HE = new HTML::Encoder(
+                            alphabet => 1, # Alphabet caracters encode (not complet).
+                            symbols  => 1, # Symbols caracters encode (not complet).
+                           );
+
+Default alphabet encode true.
 
 =cut
 
@@ -113,7 +81,18 @@ sub new
    my $type  = shift;
    my $class = ref $type || $type;
                                                                                                                              
-   my $self = {};
+   my $self = {
+               alphabet => 0,
+               symbols  => 0,
+               @_,
+              };
+
+   if (!$self->{alphabet} and !$self->{symbols}) {
+      $self->{alphabet} = 1;
+   }
+
+   $self->{heads_alphabet} = join '|',($self->{alphabet} ? keys %alphabet : '');
+   $self->{heads_symbols}  = join '|',($self->{symbols}  ? keys %symbols  : '');
 
    bless  $self, $class;
    return $self;
@@ -124,7 +103,7 @@ sub new
 Parsing data structure to searching special caracters for
 convert in HTML code.
 
- HTML::Encoder->encode($ref);
+ $HE->encode($ref);
 
 =cut
 
@@ -138,9 +117,9 @@ sub encode
          if ((ref $ref->[$i] ne 'ARRAY') and
              (ref $ref->[$i] ne 'HASH') and
              (ref $ref->[$i] ne 'SCALAR')) {
-            &encode(undef, \$ref->[$i]);
+            &encode($self, \$ref->[$i]);
          } else {
-            &encode(undef, $ref->[$i]);
+            &encode($self, $ref->[$i]);
          }
       }
    } elsif (ref $ref eq 'HASH')   {
@@ -148,13 +127,16 @@ sub encode
          if ((ref $ref->{$i} ne 'ARRAY') and
              (ref $ref->{$i} ne 'HASH') and
              (ref $ref->{$i} ne 'SCALAR')) {
-            &encode(undef, \$ref->{$i});
+            &encode($self, \$ref->{$i});
          } else {
-            &encode(undef, $ref->{$i});
+            &encode($self, $ref->{$i});
          }
       }
    } elsif (ref $ref eq 'SCALAR') {
-      ${$ref} =~ s/($heads)/$table{$1}/g;
+      ${$ref} =~ s/($self->{heads_alphabet})/$alphabet{$1}/g
+         if ($self->{heads_alphabet} ne '');
+      ${$ref} =~ s/($self->{heads_symbols})/$symbols{$1}/g
+         if ($self->{heads_symbols} ne '');
    }
 }
 
@@ -166,7 +148,7 @@ __END__
 
 =head1 SEE ALSO
 
-W3C (http://www.w3c.org/).
+W3C - http://www.w3c.org/
 
 =head1 AUTHOR
 

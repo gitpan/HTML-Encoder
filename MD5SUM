@@ -1,7 +1,7 @@
-c2de573adc475ffe3a9164f479c1c359  Changes
+d54720b719d47ec78907f295ba52f63e  Changes
 e4147cac3e3bfd6bfa44155e37a94bdc  COPYING
 ef6bf72dd280caa610e4fcd68ce6ea96  Makefile.PL
 7347d9ff096e916ac02680671cc6f63d  MANIFEST
-c6b3fd631869aaa4abe8e45ed103e574  README
-535d3b292eae6dfd4da787292d6f716e  lib/HTML/Encoder.pm
+bbef3ed10923121b56daee645190031b  README
+1e071c9137018168bd746be295b574af  lib/HTML/Encoder.pm
 b49a5b39ef2aafebd90fa74eebe922b4  t/test.t

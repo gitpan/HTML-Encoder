@@ -1,4 +1,7 @@
 Revision history for Perl extension HTML::Encoder.
 
+0.00_02   Thu Jul 17 2003
+           - HTML code fixed and seperate in a set (alphabet and symbols).
+
 0.00_01   Wed Jul 16 2003
            - Elaborate algorithm for idea.
